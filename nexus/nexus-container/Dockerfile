@@ -8,11 +8,8 @@ ENV NEXUS_WORK /sonatype-work
 ENV NEXUS_REPOS /repositories
 
 RUN cd /var/tmp \
-  && curl --fail --silent --location --retry 3 -O \
-  --header "Cookie: oraclelicense=accept-securebackup-cookie; " \
-  http://download.oracle.com/otn-pub/java/jdk/8u101-b13/jdk-8u101-linux-x64.rpm \
-  && rpm -Ui jdk-8u101-linux-x64.rpm \
-  && rm -rf jdk-8u101-linux-x64.rpm
+  && yum -y install java-1.8.0-openjdk \
+  && yum clean all
 
 # Install jq
 RUN curl --fail --silent --location --retry 3 \
